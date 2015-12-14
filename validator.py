@@ -113,7 +113,3 @@ for klass in DcatApVocab.MANDATORY_CLASSES:
     errors = check_class_validity(graph, klass)
     for k in set(errors):
         print k
-
-
-# convert to json ld
-# print(g.serialize(format='json-ld', indent=4))
