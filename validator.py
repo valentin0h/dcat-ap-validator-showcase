@@ -2,11 +2,20 @@ from rdflib import Graph, RDF
 from collections import defaultdict
 from error import ValidationError
 from vocabulary import DcatApVocab
+import sys
 
-CATALOG = "https://data.gov.ie/catalog.ttl"
+
+if len(sys.argv) > 1:
+    CATALOG = sys.argv[1]
+else:
+    print "Please provide an RDF graph URI as an argument."
+    exit();
+
+print "Obtaining RDF graph...\n"
 
 graph = Graph()
 graph.parse(CATALOG, format="turtle")
+
 
 """
 Checks whether the graph contains instances of a (mandatory)
@@ -111,5 +120,8 @@ Prints error messages to show where the validity breaks.
 """
 for klass in DcatApVocab.MANDATORY_CLASSES:
     errors = check_class_validity(graph, klass)
-    for k in set(errors):
-        print k
+    for message in set(errors):
+        print (message)
+
+
+print "\nValidation completed."
