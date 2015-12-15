@@ -1,5 +1,5 @@
 # dcat-ap-validator-showcase
-A simple skeleton for a DCAT-AP validator in Python. 
+A simple skeleton for a DCAT-AP validator in Python (2.7). 
 
 # What it does
 The validator obtains an RDF graph from a remote source and runs few validation checks to determine
