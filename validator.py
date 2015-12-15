@@ -1,21 +1,23 @@
+import sys
 from rdflib import Graph, RDF
 from collections import defaultdict
 from error import ValidationError
 from vocabulary import DcatApVocab
-import sys
-
 
 if len(sys.argv) > 1:
     CATALOG = sys.argv[1]
 else:
     print "Please provide an RDF graph URI as an argument."
-    exit();
+    exit()
 
 print "Obtaining RDF graph...\n"
 
-graph = Graph()
-graph.parse(CATALOG, format="turtle")
-
+try:
+    graph = Graph()
+    graph.parse(CATALOG, format="turtle")
+except Exception as e:
+    print "Oops, either the URL gives a 404 or it is not a valid RDF graph."
+    exit()
 
 """
 Checks whether the graph contains instances of a (mandatory)
